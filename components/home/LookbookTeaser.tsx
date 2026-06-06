@@ -1,10 +1,10 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { RevealSection } from '@/components/ui/RevealSection'
-import { lookbookImages } from '@/lib/lookbook'
+import { LookbookScene } from '@/components/lookbook/LookbookScene'
+import { lookbookEntries } from '@/lib/lookbook'
 
 export function LookbookTeaser() {
-  const images = lookbookImages.slice(0, 4)
+  const entries = lookbookEntries.slice(0, 4)
 
   return (
     <section className="py-24 px-6 max-w-7xl mx-auto">
@@ -28,23 +28,13 @@ export function LookbookTeaser() {
       </RevealSection>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        {images.map((img, i) => (
-          <RevealSection key={img.id} delay={i * 0.08}>
-            <div className={`relative overflow-hidden bg-black-soft ${i % 2 === 1 ? 'md:mt-8' : ''}`} style={{ aspectRatio: '3/4' }}>
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                className="object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105"
-                sizes="(max-width: 768px) 50vw, 25vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black-deep/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                <p className="text-[10px] tracking-[0.2em] uppercase text-sky-bright/80 font-display">{img.season}</p>
-              </div>
-              <div
-                className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                style={{ background: 'radial-gradient(circle at 30% 80%, rgba(0,180,216,0.12), transparent 60%)' }}
-              />
+        {entries.map((entry, i) => (
+          <RevealSection key={entry.id} delay={i * 0.08}>
+            <div
+              className={`relative overflow-hidden bg-black-soft ring-1 ring-transparent hover:ring-sky-bright/30 transition-all duration-500 ${i % 2 === 1 ? 'md:mt-8' : ''}`}
+              style={{ aspectRatio: '3/4' }}
+            >
+              <LookbookScene entry={entry} tilt={i % 2 === 0 ? -3 : 3} />
             </div>
           </RevealSection>
         ))}

@@ -14,12 +14,15 @@ export function ProductArt({
   accentHex,
   accentHex2,
   view = 'front',
+  backdrop = true,
   className,
 }: {
   motif: string
   accentHex: string
   accentHex2?: string
   view?: 'front' | 'back'
+  /** Set false to composite the tee into a scene that supplies its own background. */
+  backdrop?: boolean
   className?: string
 }) {
   const teeGrad = useId()
@@ -33,15 +36,21 @@ export function ProductArt({
           <stop offset="50%" stopColor="#222222" />
           <stop offset="100%" stopColor="#161616" />
         </linearGradient>
-        <radialGradient id={backdropGrad} cx="50%" cy="38%" r="65%">
-          <stop offset="0%" stopColor={accentHex} stopOpacity="0.16" />
-          <stop offset="100%" stopColor={accentHex} stopOpacity="0" />
-        </radialGradient>
+        {backdrop && (
+          <radialGradient id={backdropGrad} cx="50%" cy="38%" r="65%">
+            <stop offset="0%" stopColor={accentHex} stopOpacity="0.16" />
+            <stop offset="100%" stopColor={accentHex} stopOpacity="0" />
+          </radialGradient>
+        )}
       </defs>
 
       {/* Backdrop panel */}
-      <rect x="0" y="0" width="240" height="280" fill="#0E0E0E" />
-      <rect x="0" y="0" width="240" height="280" fill={`url(#${backdropGrad})`} />
+      {backdrop && (
+        <>
+          <rect x="0" y="0" width="240" height="280" fill="#0E0E0E" />
+          <rect x="0" y="0" width="240" height="280" fill={`url(#${backdropGrad})`} />
+        </>
+      )}
 
       {/* Garment silhouette */}
       <g style={{ filter: view === 'back' ? 'brightness(0.8)' : 'none' }}>

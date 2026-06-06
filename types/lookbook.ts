@@ -1,7 +1,8 @@
-export type LookbookImage = {
+export type LookbookEntry = {
   id: string
-  src: string
-  alt: string
+  motif: string
+  style: 'madhubani' | 'kullvi' | 'fusion'
   season: string
+  caption: string
   aspectRatio: 'portrait' | 'landscape' | 'square'
 }

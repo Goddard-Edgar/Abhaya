@@ -1,12 +1,12 @@
-import type { LookbookImage } from '@/types/lookbook'
+import type { LookbookEntry } from '@/types/lookbook'
 
-export const lookbookImages: LookbookImage[] = [
-  { id: '1', src: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&q=80', alt: 'Confluence SS25 — earth tone draped silhouette', season: 'SS25', aspectRatio: 'portrait' },
-  { id: '2', src: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80', alt: 'Madhubani Edit — lotus motif kurta', season: 'SS25', aspectRatio: 'square' },
-  { id: '3', src: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80', alt: 'Kullvi Edit — geometric shawl layering', season: 'SS25', aspectRatio: 'portrait' },
-  { id: '4', src: 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=800&q=80', alt: 'Confluence — double-weave fusion jacket', season: 'SS25', aspectRatio: 'landscape' },
-  { id: '5', src: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80', alt: 'Madhubani Edit — fish print oversized shirt', season: 'SS25', aspectRatio: 'portrait' },
-  { id: '6', src: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&q=80', alt: 'Kullvi Edit — indigo diamond patterned coord', season: 'SS25', aspectRatio: 'square' },
-  { id: '7', src: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800&q=80', alt: 'Confluence — cultural fusion editorial shoot', season: 'SS25', aspectRatio: 'portrait' },
-  { id: '8', src: 'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=800&q=80', alt: 'ABHAYA brand story — friendship in fabric', season: 'SS25', aspectRatio: 'landscape' },
+export const lookbookEntries: LookbookEntry[] = [
+  { id: '1', motif: 'machli', style: 'madhubani', season: 'SS25', caption: 'Machli — the fish that swims toward fortune', aspectRatio: 'portrait' },
+  { id: '2', motif: 'kamal', style: 'madhubani', season: 'SS25', caption: 'Kamal — petals rising from Mithila mud', aspectRatio: 'square' },
+  { id: '3', motif: 'lattice', style: 'kullvi', season: 'SS25', caption: 'Lattice — diamond geometry of the loom', aspectRatio: 'portrait' },
+  { id: '4', motif: 'chiriya', style: 'kullvi', season: 'SS25', caption: 'Chiriya — a flock crossing the mountain sky', aspectRatio: 'landscape' },
+  { id: '5', motif: 'bharni', style: 'madhubani', season: 'SS25', caption: 'Bharni — colour filled to the very edge', aspectRatio: 'portrait' },
+  { id: '6', motif: 'tara', style: 'kullvi', season: 'SS25', caption: 'Tara — stars scattered across high-altitude cotton', aspectRatio: 'square' },
+  { id: '7', motif: 'machli+tara', style: 'fusion', season: 'SS25', caption: 'Confluence — the fish swims toward starlight', aspectRatio: 'portrait' },
+  { id: '8', motif: 'kohbar+chiriya', style: 'fusion', season: 'SS25', caption: 'Confluence — union takes flight', aspectRatio: 'landscape' },
 ]

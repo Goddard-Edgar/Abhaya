@@ -1,7 +1,7 @@
-import Image from 'next/image'
-import { lookbookImages } from '@/lib/lookbook'
+import { lookbookEntries } from '@/lib/lookbook'
 import { RevealSection } from '@/components/ui/RevealSection'
 import { MadhubaniDivider } from '@/components/patterns/MadhubaniDivider'
+import { LookbookScene } from '@/components/lookbook/LookbookScene'
 
 export const metadata = {
   title: 'Lookbook — ABHAYA',
@@ -37,23 +37,16 @@ export default function Lookbook() {
             columnGap: '1rem',
           }}
         >
-          {lookbookImages.map((img, i) => (
-            <RevealSection key={img.id} delay={i * 0.05} className="break-inside-avoid mb-4 block">
-              <div className="relative overflow-hidden bg-black-soft group">
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  width={600}
-                  height={img.aspectRatio === 'portrait' ? 800 : img.aspectRatio === 'landscape' ? 400 : 600}
-                  className="w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-                  style={{ display: 'block' }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black-deep/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                  <div>
-                    <p className="text-[10px] tracking-[0.25em] uppercase text-earth-warm font-display mb-1">{img.season}</p>
-                    <p className="text-xs text-earth-light/70">{img.alt}</p>
-                  </div>
-                </div>
+          {lookbookEntries.map((entry, i) => (
+            <RevealSection key={entry.id} delay={i * 0.05} className="break-inside-avoid mb-4 block">
+              <div
+                className="relative overflow-hidden bg-black-soft ring-1 ring-transparent hover:ring-sky-bright/30 transition-all duration-500"
+                style={{
+                  aspectRatio:
+                    entry.aspectRatio === 'portrait' ? '3 / 4' : entry.aspectRatio === 'landscape' ? '4 / 3' : '1 / 1',
+                }}
+              >
+                <LookbookScene entry={entry} tilt={i % 2 === 0 ? -3 : 3} />
               </div>
             </RevealSection>
           ))}
