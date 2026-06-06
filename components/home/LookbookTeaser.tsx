@@ -21,7 +21,7 @@ export function LookbookTeaser() {
         </div>
         <Link
           href="/lookbook"
-          className="text-xs tracking-[0.2em] uppercase text-earth-warm/60 hover:text-earth-warm transition-colors font-display"
+          className="text-xs tracking-[0.2em] uppercase text-earth-warm/60 hover:text-sky-bright transition-colors font-display"
         >
           Full Lookbook →
         </Link>
@@ -39,8 +39,12 @@ export function LookbookTeaser() {
                 sizes="(max-width: 768px) 50vw, 25vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black-deep/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                <p className="text-[10px] tracking-[0.2em] uppercase text-earth-warm font-display">{img.season}</p>
+                <p className="text-[10px] tracking-[0.2em] uppercase text-sky-bright/80 font-display">{img.season}</p>
               </div>
+              <div
+                className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ background: 'radial-gradient(circle at 30% 80%, rgba(0,180,216,0.12), transparent 60%)' }}
+              />
             </div>
           </RevealSection>
         ))}

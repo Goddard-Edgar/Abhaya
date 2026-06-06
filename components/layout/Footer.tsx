@@ -20,8 +20,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           {/* Brand */}
           <div>
-            <h2 className="font-display font-bold text-4xl tracking-[0.15em] text-earth-light uppercase mb-4">
-              ABHAYA
+            <h2 className="font-bold text-5xl text-earth-light mb-4" style={{ fontFamily: 'var(--font-hindi)' }}>
+              अभय
             </h2>
             <p className="font-serif italic text-earth-warm/80 text-lg leading-relaxed">
               Where earth meets sky.<br />
@@ -38,7 +38,7 @@ export function Footer() {
                 <Link
                   key={href}
                   href={href}
-                  className="text-sm tracking-[0.1em] uppercase text-earth-light/50 hover:text-earth-light transition-colors"
+                  className="text-sm tracking-[0.1em] uppercase text-earth-light/50 hover:text-sky-bright transition-colors duration-300"
                 >
                   {label}
                 </Link>

@@ -10,6 +10,7 @@ export default function Home() {
     <main>
       <Hero />
       <MarqueeStrip />
+      <MarqueeStrip color="sky" text="MADHUBANI · KULLVI · CONFLUENCE · अभय · EARTH × SKY · " className="border-t-0" />
       <CollectionPreview />
       <div className="px-6 max-w-7xl mx-auto opacity-20">
         <MadhubaniDivider />

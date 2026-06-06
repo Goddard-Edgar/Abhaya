@@ -39,12 +39,12 @@ export function Nav() {
         style={{
           background: scrolled ? 'rgba(10,10,10,0.92)' : 'transparent',
           backdropFilter: scrolled ? 'blur(12px)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(196,149,106,0.1)' : 'none',
+          borderBottom: scrolled ? '1px solid rgba(0,180,216,0.12)' : 'none',
         }}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <Link href="/" className="font-display font-bold text-xl tracking-[0.15em] text-earth-light uppercase">
-            ABHAYA
+          <Link href="/" className="font-bold text-2xl text-earth-light" style={{ fontFamily: 'var(--font-hindi)' }}>
+            अभय
           </Link>
 
           {/* Desktop nav */}
@@ -56,8 +56,8 @@ export function Nav() {
                 className={cn(
                   'text-xs tracking-[0.15em] uppercase transition-colors duration-300',
                   pathname === href
-                    ? 'text-earth-warm'
-                    : 'text-earth-light/60 hover:text-earth-light'
+                    ? 'text-sky-bright'
+                    : 'text-earth-light/60 hover:text-sky-bright'
                 )}
               >
                 {label}
@@ -111,7 +111,7 @@ export function Nav() {
                 >
                   <Link
                     href={href}
-                    className="font-display text-3xl font-bold tracking-[0.1em] uppercase text-earth-light hover:text-earth-warm transition-colors"
+                    className="font-display text-3xl font-bold tracking-[0.1em] uppercase text-earth-light hover:text-sky-bright transition-colors"
                   >
                     {label}
                   </Link>

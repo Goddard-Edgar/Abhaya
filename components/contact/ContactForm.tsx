@@ -29,7 +29,7 @@ export function ContactForm() {
     }
   }
 
-  const inputClass = 'w-full bg-transparent border-b border-earth-dark/40 pb-3 pt-2 text-earth-light placeholder-earth-light/20 text-sm font-display tracking-wide focus:outline-none focus:border-earth-warm transition-colors duration-300'
+  const inputClass = 'w-full bg-transparent border-b border-earth-dark/40 pb-3 pt-2 text-earth-light placeholder-earth-light/20 text-sm font-display tracking-wide focus:outline-none focus:border-sky-bright transition-colors duration-300'
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-10">

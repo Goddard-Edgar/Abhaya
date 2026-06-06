@@ -42,7 +42,10 @@ export function CultureTeaser() {
                 { title: 'Fearlessness', sub: 'अभय — The Core', color: 'border-earth-warm/30 hover:border-earth-warm' },
                 { title: 'Confluence', sub: 'Where They Meet', color: 'border-sky-deep/30 hover:border-sky-deep' },
               ].map(({ title, sub, color }) => (
-                <div key={title} className={`border p-6 transition-colors duration-300 ${color}`}>
+                <div
+                  key={title}
+                  className={`border p-6 transition-all duration-300 backdrop-blur-md bg-white/[0.03] hover:bg-white/[0.06] ${color}`}
+                >
                   <h3 className="font-display font-bold text-earth-light text-lg mb-1">{title}</h3>
                   <p className="text-xs text-earth-light/30 tracking-wide">{sub}</p>
                 </div>

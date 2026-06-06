@@ -114,7 +114,7 @@ export default function About() {
               { year: 'Now', label: 'ABHAYA brings them together', desc: 'Two traditions. One brand. The future of Indian identity wear.' },
             ].map(({ year, label, desc }, i) => (
               <RevealSection key={year} delay={i * 0.15}>
-                <div className="border-t border-earth-dark/30 pt-6">
+                <div className="border-t border-earth-dark/30 pt-6 px-5 pb-6 backdrop-blur-md bg-white/[0.03] hover:bg-white/[0.06] transition-colors duration-300">
                   <p className="text-xs tracking-[0.25em] uppercase text-earth-warm mb-3 font-display">{year}</p>
                   <h3 className="font-display font-bold text-earth-light text-lg mb-3">{label}</h3>
                   <p className="text-earth-light/40 text-sm leading-relaxed">{desc}</p>

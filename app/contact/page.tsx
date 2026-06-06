@@ -45,7 +45,7 @@ export default function Contact() {
                 { label: 'Press & Media', desc: 'Editorial features, lookbook requests, brand story' },
                 { label: 'Stockists', desc: 'Carry ABHAYA in your store' },
               ].map(({ label, desc }) => (
-                <div key={label} className="border-l border-earth-dark/30 pl-4 hover:border-earth-warm transition-colors duration-300">
+                <div key={label} className="border-l border-earth-dark/30 pl-4 py-3 pr-3 backdrop-blur-md bg-white/[0.02] hover:bg-white/[0.05] hover:border-sky-bright transition-all duration-300">
                   <p className="text-sm font-display font-medium text-earth-light mb-1">{label}</p>
                   <p className="text-xs text-earth-light/30">{desc}</p>
                 </div>

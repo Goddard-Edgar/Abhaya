@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="grain-overlay">
+      <body className="grain-overlay ambient-glow">
         <Cursor />
         <Nav />
         <PageTransition>

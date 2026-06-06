@@ -6,13 +6,31 @@ import { MadhubaniCorner } from '@/components/patterns/MadhubaniCorner'
 import { PatternBackground } from '@/components/patterns/PatternBackground'
 import { letterReveal, staggerContainer, fadeUp } from '@/lib/animations'
 
-const letters = 'ABHAYA'.split('')
+const letters = 'अभय'.split('')
 
 export function Hero() {
   return (
     <section className="relative w-full min-h-[100svh] flex flex-col items-center justify-center overflow-hidden">
       {/* Background pattern */}
       <PatternBackground variant="madhubani" opacity={0.04} />
+      <PatternBackground variant="kullvi" opacity={0.03} className="opacity-60" />
+
+      {/* Ambient blue glow — top right */}
+      <div
+        className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(0,180,216,0.12) 0%, transparent 70%)',
+          filter: 'blur(60px)',
+        }}
+      />
+      {/* Ambient blue glow — bottom left */}
+      <div
+        className="absolute -bottom-32 -left-32 w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(46,134,171,0.10) 0%, transparent 70%)',
+          filter: 'blur(60px)',
+        }}
+      />
 
       {/* Radial gradient vignette */}
       <div
@@ -26,10 +44,10 @@ export function Hero() {
       <div className="absolute top-20 left-6 opacity-30">
         <MadhubaniCorner rotate={0} size={100} />
       </div>
-      <div className="absolute top-20 right-6 opacity-30">
+      <div className="absolute top-20 right-6 opacity-25" style={{ filter: 'hue-rotate(150deg) saturate(1.4)' }}>
         <MadhubaniCorner rotate={90} size={100} />
       </div>
-      <div className="absolute bottom-8 left-6 opacity-20">
+      <div className="absolute bottom-8 left-6 opacity-20" style={{ filter: 'hue-rotate(150deg) saturate(1.4)' }}>
         <MadhubaniCorner rotate={270} size={80} />
       </div>
       <div className="absolute bottom-8 right-6 opacity-20">
@@ -60,11 +78,12 @@ export function Hero() {
             <motion.span
               key={i}
               variants={letterReveal}
-              className="font-display font-bold text-earth-light block"
+              className="font-bold text-earth-light block"
               style={{
-                fontSize: 'clamp(72px, 16vw, 200px)',
-                lineHeight: 1,
-                letterSpacing: '-0.02em',
+                fontFamily: 'var(--font-hindi)',
+                fontSize: 'clamp(72px, 17vw, 210px)',
+                lineHeight: 1.15,
+                letterSpacing: '0.01em',
               }}
             >
               {letter}
@@ -81,16 +100,17 @@ export function Hero() {
           className="font-serif italic text-earth-warm/80 mb-10 max-w-lg"
           style={{ fontSize: 'clamp(18px, 2.5vw, 26px)', lineHeight: 1.5 }}
         >
-          Where earth meets sky. Where plains meet mountains.<br />
+          Where <span className="text-sky-bright/90 not-italic">earth meets sky</span>. Where plains meet mountains.<br />
           Where cloth becomes identity.
         </motion.p>
 
-        {/* Divider line */}
+        {/* Divider line — gradient earth to sky */}
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.8, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="w-16 h-px bg-earth-warm mb-10 origin-center"
+          className="w-20 h-px mb-10 origin-center"
+          style={{ background: 'linear-gradient(90deg, var(--brown-warm), var(--blue-bright))' }}
         />
 
         {/* CTA */}

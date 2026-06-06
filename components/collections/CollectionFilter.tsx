@@ -28,7 +28,7 @@ export function CollectionFilter({ collections }: { collections: Collection[] })
             className={cn(
               'text-xs tracking-[0.2em] uppercase font-display transition-colors duration-200 pb-1',
               active === value
-                ? 'text-earth-warm border-b border-earth-warm'
+                ? 'text-sky-bright border-b border-sky-bright'
                 : 'text-earth-light/30 hover:text-earth-light/60'
             )}
           >
