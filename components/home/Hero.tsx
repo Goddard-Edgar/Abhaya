@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
 import { MadhubaniCorner } from '@/components/patterns/MadhubaniCorner'
 import { PatternBackground } from '@/components/patterns/PatternBackground'
@@ -11,33 +12,60 @@ const letters = 'अभय'.split('')
 export function Hero() {
   return (
     <section className="relative w-full min-h-[100svh] flex flex-col items-center justify-center overflow-hidden">
-      {/* Background pattern */}
-      <PatternBackground variant="madhubani" opacity={0.04} />
-      <PatternBackground variant="kullvi" opacity={0.03} className="opacity-60" />
+      {/* LEFT photo panel — Madhubani / peacock feather */}
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+        className="absolute top-0 left-0 bottom-0 w-[38%] pointer-events-none"
+      >
+        <Image
+          src="/images/lookbook/madhubani-peacock.jpg"
+          alt=""
+          fill
+          className="object-cover object-center"
+          sizes="38vw"
+          priority
+        />
+        {/* Earth-tone tint */}
+        <div className="absolute inset-0" style={{ background: 'rgba(42,27,16,0.45)' }} />
+        {/* Fade to black at the right edge */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, transparent 20%, #0A0A0A 100%)' }} />
+        {/* Fade to black at top/bottom */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, #0A0A0A 0%, transparent 15%, transparent 85%, #0A0A0A 100%)' }} />
+      </motion.div>
 
-      {/* Ambient blue glow — top right */}
-      <div
-        className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(0,180,216,0.12) 0%, transparent 70%)',
-          filter: 'blur(60px)',
-        }}
-      />
-      {/* Ambient blue glow — bottom left */}
-      <div
-        className="absolute -bottom-32 -left-32 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(46,134,171,0.10) 0%, transparent 70%)',
-          filter: 'blur(60px)',
-        }}
-      />
+      {/* RIGHT photo panel — Kullvi / loom hands */}
+      <motion.div
+        initial={{ opacity: 0, x: 30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+        className="absolute top-0 right-0 bottom-0 w-[38%] pointer-events-none"
+      >
+        <Image
+          src="/images/lookbook/kullvi-loom-hands.jpg"
+          alt=""
+          fill
+          className="object-cover object-center"
+          sizes="38vw"
+          priority
+        />
+        {/* Sky-blue tint */}
+        <div className="absolute inset-0" style={{ background: 'rgba(12,37,48,0.45)' }} />
+        {/* Fade to black at the left edge */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to left, transparent 20%, #0A0A0A 100%)' }} />
+        {/* Fade to black at top/bottom */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, #0A0A0A 0%, transparent 15%, transparent 85%, #0A0A0A 100%)' }} />
+      </motion.div>
 
-      {/* Radial gradient vignette */}
+      {/* Background pattern — sits on top of photos, adds texture */}
+      <PatternBackground variant="madhubani" opacity={0.03} />
+      <PatternBackground variant="kullvi" opacity={0.02} className="opacity-60" />
+
+      {/* Radial vignette — keeps the centre text area dark and readable */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse at center, transparent 40%, #0A0A0A 100%)',
-        }}
+        style={{ background: 'radial-gradient(ellipse 55% 70% at center, transparent 30%, #0A0A0A 90%)' }}
       />
 
       {/* Corner ornaments */}
