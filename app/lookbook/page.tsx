@@ -29,14 +29,8 @@ export default function Lookbook() {
           <MadhubaniDivider />
         </div>
 
-        {/* CSS columns masonry */}
-        <div
-          className="gap-4"
-          style={{
-            columnCount: 3,
-            columnGap: '1rem',
-          }}
-        >
+        {/* CSS columns masonry — 1 col mobile, 2 col tablet, 3 col desktop */}
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-4">
           {lookbookEntries.map((entry, i) => (
             <RevealSection key={entry.id} delay={i * 0.05} className="break-inside-avoid mb-4 block">
               <div

@@ -2,14 +2,14 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, message } = await req.json()
+    const { name, email, subject, message } = await req.json()
 
-    if (!name || !email || !message) {
+    if (!name || !email || !subject || !message) {
       return NextResponse.json({ error: 'All fields required' }, { status: 400 })
     }
 
     // Log submission — connect to email service (Resend, SendGrid) when ready
-    console.log('ABHAYA Contact Form Submission:', { name, email, message, timestamp: new Date().toISOString() })
+    console.log('ABHAYA Contact Form Submission:', { name, email, subject, message, timestamp: new Date().toISOString() })
 
     return NextResponse.json({ success: true })
   } catch {

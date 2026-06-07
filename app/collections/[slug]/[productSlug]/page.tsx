@@ -53,7 +53,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Images */}
           <RevealSection>
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-2 gap-2 md:grid-cols-1 md:gap-4">
               {(['front', 'back'] as const).map((view) => (
                 <div key={view} className="relative aspect-[3/4] overflow-hidden bg-black-soft">
                   <ProductArt

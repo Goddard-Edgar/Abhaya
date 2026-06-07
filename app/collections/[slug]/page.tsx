@@ -35,7 +35,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
           </Link>
         </RevealSection>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start">
           <RevealSection>
             <div className="relative aspect-[3/4] overflow-hidden bg-black-soft">
               <Image
