@@ -5,4 +5,5 @@ export type LookbookEntry = {
   season: string
   caption: string
   aspectRatio: 'portrait' | 'landscape' | 'square'
+  bg?: string
 }
