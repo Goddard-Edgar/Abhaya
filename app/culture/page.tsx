@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { RevealSection } from '@/components/ui/RevealSection'
 import { MadhubaniDivider } from '@/components/patterns/MadhubaniDivider'
 import { KullviBorder } from '@/components/patterns/KullviBorder'
@@ -15,6 +16,16 @@ export default function Culture() {
     <main className="pt-24">
       {/* Hero */}
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden px-6">
+        {/* Split photo background — rangoli left, loom right */}
+        <div className="absolute inset-0 grid grid-cols-2">
+          <div className="relative overflow-hidden">
+            <Image src="/images/lookbook/madhubani-rangoli.jpg" alt="" fill className="object-cover opacity-20" sizes="50vw" />
+          </div>
+          <div className="relative overflow-hidden">
+            <Image src="/images/lookbook/kullvi-loom-hands.jpg" alt="" fill className="object-cover opacity-20" sizes="50vw" />
+          </div>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black-deep/80 via-black-deep/60 to-black-deep/80" />
         <PatternBackground variant="madhubani" opacity={0.04} />
         <PatternBackground variant="kullvi" opacity={0.03} className="opacity-50" />
         <div className="absolute top-4 left-4 opacity-20">
@@ -46,58 +57,71 @@ export default function Culture() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <RevealSection>
-              {/* Madhubani SVG artwork */}
-              <div className="relative aspect-square flex items-center justify-center">
-                <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-sm">
-                  {/* Outer border */}
-                  <rect x="10" y="10" width="380" height="380" stroke="#C4956A" strokeWidth="2" fill="none" opacity="0.4" />
-                  <rect x="18" y="18" width="364" height="364" stroke="#C4956A" strokeWidth="1" fill="none" opacity="0.2" />
+              {/* Photo composition — real Madhubani cultural imagery */}
+              <div className="relative aspect-square overflow-hidden">
+                {/* Primary: peacock feather — close-up richness */}
+                <div className="absolute inset-0">
+                  <Image
+                    src="/images/lookbook/madhubani-peacock.jpg"
+                    alt="Peacock feather — Madhubani's Mayur motif in nature"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </div>
+                {/* Earth-tone overlay */}
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(160deg, rgba(42,27,16,0.55) 0%, rgba(14,14,14,0.4) 60%, rgba(42,27,16,0.7) 100%)' }} />
 
-                  {/* Central lotus */}
-                  {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => {
-                    const rad = (angle * Math.PI) / 180
-                    const cx = 200 + Math.cos(rad) * 70
-                    const cy = 200 + Math.sin(rad) * 70
-                    return (
-                      <ellipse
-                        key={angle}
-                        cx={cx} cy={cy} rx={40} ry={14}
-                        transform={`rotate(${angle}, ${cx}, ${cy})`}
-                        stroke="#C4956A" strokeWidth="1.5" fill="none" opacity="0.8"
-                      />
-                    )
-                  })}
-                  <circle cx="200" cy="200" r="25" stroke="#C4956A" strokeWidth="2" fill="none" opacity="0.8" />
-                  <circle cx="200" cy="200" r="10" stroke="#C4956A" strokeWidth="1.5" fill="none" opacity="0.6" />
-                  <circle cx="200" cy="200" r="4" fill="#C4956A" opacity="0.8" />
+                {/* Inset: holi/folk colour — bottom-left panel */}
+                <div className="absolute bottom-4 left-4 w-2/5 aspect-[4/3] overflow-hidden ring-1 ring-earth-warm/30">
+                  <Image
+                    src="/images/lookbook/culture-madhubani-holi.jpg"
+                    alt="Indian folk colour tradition"
+                    fill
+                    className="object-cover"
+                    sizes="25vw"
+                  />
+                  <div className="absolute inset-0" style={{ background: 'rgba(42,27,16,0.35)' }} />
+                </div>
 
-                  {/* Corner fish */}
-                  {[[60,60,45],[340,60,135],[60,340,315],[340,340,225]].map(([x, y, rot]) => (
-                    <g key={`${x}-${y}`} transform={`translate(${x}, ${y}) rotate(${rot})`}>
-                      <ellipse cx="0" cy="0" rx="22" ry="11" stroke="#C4956A" strokeWidth="1.2" fill="none" opacity="0.7" />
-                      <path d="M -22 0 L -30 -9 L -30 9 Z" stroke="#C4956A" strokeWidth="1" fill="none" opacity="0.7" />
-                      <circle cx="12" cy="-2" r="2.5" fill="#C4956A" opacity="0.7" />
-                      <line x1="-18" y1="-6" x2="14" y2="-6" stroke="#C4956A" strokeWidth="0.5" opacity="0.4" />
-                      <line x1="-18" y1="0" x2="16" y2="0" stroke="#C4956A" strokeWidth="0.5" opacity="0.4" />
-                      <line x1="-18" y1="6" x2="14" y2="6" stroke="#C4956A" strokeWidth="0.5" opacity="0.4" />
-                    </g>
-                  ))}
+                {/* Inset: lotus — bottom-right panel */}
+                <div className="absolute bottom-4 right-4 w-2/5 aspect-[4/3] overflow-hidden ring-1 ring-earth-warm/30">
+                  <Image
+                    src="/images/lookbook/madhubani-lotus.jpg"
+                    alt="Lotus — sacred Kamal motif"
+                    fill
+                    className="object-cover"
+                    sizes="25vw"
+                  />
+                  <div className="absolute inset-0" style={{ background: 'rgba(42,27,16,0.3)' }} />
+                </div>
 
-                  {/* Sun/peacock elements */}
-                  {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((a) => {
-                    const rad = (a * Math.PI) / 180
-                    return (
-                      <line
-                        key={a}
-                        x1={200 + Math.cos(rad) * 130}
-                        y1={200 + Math.sin(rad) * 130}
-                        x2={200 + Math.cos(rad) * 150}
-                        y2={200 + Math.sin(rad) * 150}
-                        stroke="#C4956A" strokeWidth="1" opacity="0.4"
-                      />
-                    )
-                  })}
-                </svg>
+                {/* SVG motif overlay — brand art on top of photography */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <svg viewBox="0 0 400 400" fill="none" className="w-3/4 opacity-60">
+                    <rect x="10" y="10" width="380" height="380" stroke="#C4956A" strokeWidth="2" fill="none" opacity="0.5" />
+                    {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => {
+                      const rad = (angle * Math.PI) / 180
+                      const cx = 200 + Math.cos(rad) * 70
+                      const cy = 200 + Math.sin(rad) * 70
+                      return <ellipse key={angle} cx={cx} cy={cy} rx={40} ry={14} transform={`rotate(${angle}, ${cx}, ${cy})`} stroke="#C4956A" strokeWidth="1.5" fill="none" opacity="0.9" />
+                    })}
+                    <circle cx="200" cy="200" r="25" stroke="#C4956A" strokeWidth="2" fill="none" opacity="0.9" />
+                    <circle cx="200" cy="200" r="4" fill="#C4956A" opacity="0.9" />
+                    {[[60,60,45],[340,60,135],[60,340,315],[340,340,225]].map(([x, y, rot]) => (
+                      <g key={`${x}-${y}`} transform={`translate(${x}, ${y}) rotate(${rot})`}>
+                        <ellipse cx="0" cy="0" rx="22" ry="11" stroke="#C4956A" strokeWidth="1.2" fill="none" opacity="0.8" />
+                        <path d="M -22 0 L -30 -9 L -30 9 Z" stroke="#C4956A" strokeWidth="1" fill="none" opacity="0.8" />
+                        <circle cx="12" cy="-2" r="2.5" fill="#C4956A" opacity="0.8" />
+                      </g>
+                    ))}
+                  </svg>
+                </div>
+
+                {/* Corner ornament */}
+                <div className="absolute top-2 right-2 opacity-40">
+                  <MadhubaniCorner rotate={90} size={64} />
+                </div>
               </div>
             </RevealSection>
 
@@ -185,8 +209,54 @@ export default function Culture() {
             </RevealSection>
 
             <RevealSection className="order-1 lg:order-2">
-              <div className="flex items-center justify-center">
-                <KullviGeometric color="#00B4D8" size={320} className="opacity-80" />
+              {/* Photo composition — real Kullvi cultural imagery */}
+              <div className="relative aspect-square overflow-hidden">
+                {/* Primary: loom hands with colourful Kullvi textiles */}
+                <div className="absolute inset-0">
+                  <Image
+                    src="/images/lookbook/kullvi-loom-hands.jpg"
+                    alt="Hands at the Kullu loom — Kullvi weaving tradition"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </div>
+                {/* Sky-blue overlay */}
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(160deg, rgba(12,37,48,0.5) 0%, rgba(14,14,14,0.35) 60%, rgba(12,37,48,0.72) 100%)' }} />
+
+                {/* Inset: himachal man — bottom-left */}
+                <div className="absolute bottom-4 left-4 w-2/5 aspect-[4/3] overflow-hidden ring-1 ring-sky-bright/30">
+                  <Image
+                    src="/images/lookbook/culture-kullvi-man.jpg"
+                    alt="Himachal man — Kullvi heritage"
+                    fill
+                    className="object-cover object-top"
+                    sizes="25vw"
+                  />
+                  <div className="absolute inset-0" style={{ background: 'rgba(12,37,48,0.35)' }} />
+                </div>
+
+                {/* Inset: himalayan mountain — bottom-right */}
+                <div className="absolute bottom-4 right-4 w-2/5 aspect-[4/3] overflow-hidden ring-1 ring-sky-bright/30">
+                  <Image
+                    src="/images/lookbook/kullvi-himalaya.jpg"
+                    alt="Himalayan peaks — the world behind the Kullvi weave"
+                    fill
+                    className="object-cover"
+                    sizes="25vw"
+                  />
+                  <div className="absolute inset-0" style={{ background: 'rgba(12,37,48,0.3)' }} />
+                </div>
+
+                {/* KullviGeometric SVG overlay */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <KullviGeometric color="#00B4D8" size={280} className="opacity-40" />
+                </div>
+
+                {/* Corner ornament */}
+                <div className="absolute top-2 left-2 opacity-40">
+                  <KullviGeometric size={64} color="#00B4D8" />
+                </div>
               </div>
             </RevealSection>
           </div>
