@@ -4,6 +4,8 @@ interface MadhubaniCornerProps {
   className?: string
 }
 
+const rnd = (n: number) => Math.round(n * 1e4) / 1e4
+
 export function MadhubaniCorner({ rotate = 0, size = 120, className = '' }: MadhubaniCornerProps) {
   return (
     <svg
@@ -29,12 +31,12 @@ export function MadhubaniCorner({ rotate = 0, size = 120, className = '' }: Madh
       {/* Corner lotus petals radiating from (0,0) */}
       {[0, 15, 30, 45, 60, 75, 90].map((angle) => {
         const rad = (angle * Math.PI) / 180
-        const x1 = Math.cos(rad) * 18
-        const y1 = Math.sin(rad) * 18
-        const x2 = Math.cos(rad) * 38
-        const y2 = Math.sin(rad) * 38
-        const cx = Math.cos(rad) * 28
-        const cy = Math.sin(rad) * 28
+        const x1 = rnd(Math.cos(rad) * 18)
+        const y1 = rnd(Math.sin(rad) * 18)
+        const x2 = rnd(Math.cos(rad) * 38)
+        const y2 = rnd(Math.sin(rad) * 38)
+        const cx = rnd(Math.cos(rad) * 28)
+        const cy = rnd(Math.sin(rad) * 28)
         return (
           <g key={angle}>
             <ellipse
@@ -58,8 +60,8 @@ export function MadhubaniCorner({ rotate = 0, size = 120, className = '' }: Madh
         return (
           <circle
             key={`dot-${angle}`}
-            cx={Math.cos(rad) * 105}
-            cy={Math.sin(rad) * 105}
+            cx={rnd(Math.cos(rad) * 105)}
+            cy={rnd(Math.sin(rad) * 105)}
             r={2}
             fill="#C4956A"
             opacity="0.6"

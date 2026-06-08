@@ -3,6 +3,8 @@ interface MadhubaniDividerProps {
   color?: string
 }
 
+const rnd = (n: number) => Math.round(n * 1e4) / 1e4
+
 export function MadhubaniDivider({ className = '', color = '#C4956A' }: MadhubaniDividerProps) {
   const opacity = 0.7
 
@@ -42,11 +44,11 @@ export function MadhubaniDivider({ className = '', color = '#C4956A' }: Madhuban
           return (
             <ellipse
               key={angle}
-              cx={Math.cos(rad) * 14}
-              cy={Math.sin(rad) * 14}
+              cx={rnd(Math.cos(rad) * 14)}
+              cy={rnd(Math.sin(rad) * 14)}
               rx={10}
               ry={4}
-              transform={`rotate(${angle}, ${Math.cos(rad) * 14}, ${Math.sin(rad) * 14})`}
+              transform={`rotate(${angle}, ${rnd(Math.cos(rad) * 14)}, ${rnd(Math.sin(rad) * 14)})`}
               stroke={color}
               strokeWidth="0.8"
               fill="none"
@@ -83,11 +85,11 @@ export function MadhubaniDivider({ className = '', color = '#C4956A' }: Madhuban
           return (
             <ellipse
               key={angle}
-              cx={Math.cos(rad) * 14}
-              cy={Math.sin(rad) * 14}
+              cx={rnd(Math.cos(rad) * 14)}
+              cy={rnd(Math.sin(rad) * 14)}
               rx={10}
               ry={4}
-              transform={`rotate(${angle}, ${Math.cos(rad) * 14}, ${Math.sin(rad) * 14})`}
+              transform={`rotate(${angle}, ${rnd(Math.cos(rad) * 14)}, ${rnd(Math.sin(rad) * 14)})`}
               stroke={color}
               strokeWidth="0.8"
               fill="none"
