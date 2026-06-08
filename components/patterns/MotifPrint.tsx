@@ -7,6 +7,10 @@
 
 type MotifProps = { color: string; opacity?: number }
 
+// Rounds computed floats to 4dp — prevents server/client hydration mismatches
+// caused by floating-point precision differences in Math.sin/cos results.
+const rnd = (n: number) => Math.round(n * 1e4) / 1e4
+
 function Machli({ color, opacity = 1 }: MotifProps) {
   return (
     <g opacity={opacity} stroke={color} strokeWidth={1.6} fill="none">
@@ -58,8 +62,8 @@ function SuryaChandra({ color, opacity = 1 }: MotifProps) {
         return (
           <line
             key={a}
-            x1={34 + Math.cos(rad) * r1} y1={50 + Math.sin(rad) * r1}
-            x2={34 + Math.cos(rad) * r2} y2={50 + Math.sin(rad) * r2}
+            x1={rnd(34 + Math.cos(rad) * r1)} y1={rnd(50 + Math.sin(rad) * r1)}
+            x2={rnd(34 + Math.cos(rad) * r2)} y2={rnd(50 + Math.sin(rad) * r2)}
           />
         )
       })}
@@ -123,7 +127,7 @@ function Tantrik({ color, opacity = 1 }: MotifProps) {
       <circle cx="50" cy="50" r="3" fill={color} />
       {Array.from({ length: 8 }, (_, i) => (i * 360) / 8).map((a) => {
         const rad = (a * Math.PI) / 180
-        return <circle key={a} cx={50 + Math.cos(rad) * 22} cy={50 + Math.sin(rad) * 22} r="1.4" fill={color} />
+        return <circle key={a} cx={rnd(50 + Math.cos(rad) * 22)} cy={rnd(50 + Math.sin(rad) * 22)} r="1.4" fill={color} />
       })}
     </g>
   )
@@ -175,7 +179,7 @@ function DabbidarKiru({ color, opacity = 1 }: MotifProps) {
     <g opacity={opacity}>
       <path d="M18 50 Q34 28 50 50 T82 50" stroke={color} strokeWidth={1.6} fill="none" />
       {[18, 28, 38, 48, 58, 68, 78].map((x, i) => {
-        const y = 50 + Math.sin((x / 82) * Math.PI * 2.1) * -16
+        const y = rnd(50 + Math.sin((x / 82) * Math.PI * 2.1) * -16)
         return <circle key={i} cx={x} cy={y} r="1.6" fill={color} />
       })}
     </g>
@@ -218,7 +222,7 @@ function Tara({ color, opacity = 1 }: MotifProps) {
     const pts = Array.from({ length: 8 }, (_, i) => {
       const a = (i * Math.PI) / 4
       const rad = i % 2 === 0 ? r : r * 0.42
-      return `${cx + Math.cos(a) * rad},${cy + Math.sin(a) * rad}`
+      return `${rnd(cx + Math.cos(a) * rad)},${rnd(cy + Math.sin(a) * rad)}`
     })
     return pts.join(' ')
   }
