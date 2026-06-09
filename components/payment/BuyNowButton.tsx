@@ -34,24 +34,20 @@ export function BuyNowButton({ productName, productSlug, price, sizes }: Props) 
   const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle')
 
   const handleBuyNow = async () => {
-    if (!selectedSize) return
-
+    if (!selectedSize || status === 'loading') return
     setStatus('loading')
 
-    const loaded = await loadRazorpayScript()
-    if (!loaded) {
-      setStatus('error')
-      return
-    }
-
     try {
+      const loaded = await loadRazorpayScript()
+      if (!loaded) throw new Error('Razorpay script failed to load')
+
       const orderRes = await fetch('/api/payment/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: price, productName, productSlug, size: selectedSize }),
       })
-
       if (!orderRes.ok) throw new Error('Order creation failed')
+
       const { orderId, amount, currency, keyId } = await orderRes.json()
 
       const options = {
@@ -62,7 +58,11 @@ export function BuyNowButton({ productName, productSlug, price, sizes }: Props) 
         description: `${productName} — Size ${selectedSize}`,
         image: '/favicon.ico',
         order_id: orderId,
-        handler: async (response: { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string }) => {
+        handler: async (response: {
+          razorpay_order_id: string
+          razorpay_payment_id: string
+          razorpay_signature: string
+        }) => {
           const verifyRes = await fetch('/api/payment/verify', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -94,22 +94,25 @@ export function BuyNowButton({ productName, productSlug, price, sizes }: Props) 
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      {/* Size selector */}
+    <div className="flex flex-col gap-5">
+
+      {/* ── Size selector ── */}
       <div>
-        <p className="text-[10px] tracking-[0.2em] uppercase text-earth-light/30 font-display mb-3">Select Size</p>
+        <p className="text-[10px] tracking-[0.2em] uppercase font-display mb-3"
+          style={{ color: 'rgba(240,212,176,0.6)' }}>
+          Select Size
+        </p>
         <div className="flex gap-2 flex-wrap">
           {sizes.map((size) => (
             <button
               key={size}
               type="button"
-              onClick={() => setSelectedSize(size)}
-              className={cn(
-                'w-12 h-12 text-xs font-display tracking-wide transition-all duration-200 border',
-                selectedSize === size
-                  ? 'border-earth-warm bg-earth-warm/15 text-earth-light'
-                  : 'border-earth-dark/30 text-earth-light/40 hover:border-earth-warm/50 hover:text-earth-light/70'
-              )}
+              onClick={() => { setSelectedSize(size); setStatus('idle') }}
+              style={selectedSize === size
+                ? { background: '#C4956A', color: '#0A0A0A', borderColor: '#C4956A', cursor: 'pointer' }
+                : { cursor: 'pointer' }
+              }
+              className="w-12 h-12 text-sm font-display font-medium tracking-wide transition-all duration-200 border border-earth-warm/60 text-earth-warm hover:border-earth-warm hover:bg-earth-warm/10"
             >
               {size}
             </button>
@@ -117,20 +120,40 @@ export function BuyNowButton({ productName, productSlug, price, sizes }: Props) 
         </div>
       </div>
 
-      {/* Buy Now */}
+      {/* ── Buy Now ── */}
       <button
         type="button"
         onClick={handleBuyNow}
-        disabled={!selectedSize || status === 'loading'}
-        className={cn(
-          'text-xs tracking-[0.25em] uppercase font-display font-medium px-8 py-4 transition-all duration-300 text-center',
-          selectedSize && status !== 'loading'
-            ? 'text-black-deep bg-earth-warm hover:bg-earth-light cursor-pointer'
-            : 'text-earth-light/30 border border-earth-dark/20 cursor-not-allowed'
-        )}
+        style={{
+          cursor: 'pointer',
+          background: selectedSize ? '#C4956A' : 'transparent',
+          color: selectedSize ? '#0A0A0A' : '#C4956A',
+          border: selectedSize ? '2px solid #C4956A' : '2px solid rgba(196,149,106,0.5)',
+          opacity: status === 'loading' ? 0.75 : 1,
+        }}
+        className="w-full py-4 text-sm tracking-[0.25em] uppercase font-display font-semibold transition-all duration-300"
       >
-        {status === 'loading' ? 'Opening Checkout…' : status === 'error' ? 'Try Again' : selectedSize ? `Buy Now — ₹${price.toLocaleString('en-IN')}` : 'Select a Size'}
+        {status === 'loading' && (
+          <span className="flex items-center justify-center gap-2">
+            <span className="inline-block w-3 h-3 border border-current border-t-transparent rounded-full animate-spin" />
+            Opening Checkout…
+          </span>
+        )}
+        {status === 'error' && '⚠ Something went wrong — Try Again'}
+        {status === 'idle' && (
+          selectedSize
+            ? `Buy Now — ₹${price.toLocaleString('en-IN')}`
+            : '↑ Select a Size Above'
+        )}
       </button>
+
+      {/* Error hint */}
+      {status === 'error' && (
+        <p className="text-xs text-earth-warm/60 text-center -mt-2">
+          Check your connection and try again.
+        </p>
+      )}
+
     </div>
   )
 }
