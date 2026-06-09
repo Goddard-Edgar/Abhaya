@@ -19,7 +19,9 @@ interface Props {
 
 function loadRazorpayScript(): Promise<boolean> {
   return new Promise((resolve) => {
-    if (document.getElementById('razorpay-sdk')) { resolve(true); return }
+    if (window.Razorpay) { resolve(true); return }
+    // Remove any stale/failed script element before adding a fresh one
+    document.getElementById('razorpay-sdk')?.remove()
     const script = document.createElement('script')
     script.id = 'razorpay-sdk'
     script.src = 'https://checkout.razorpay.com/v1/checkout.js'
@@ -86,6 +88,7 @@ export function BuyNowButton({ productName, productSlug, price, sizes }: Props) 
         modal: { ondismiss: () => setStatus('idle') },
       }
 
+      if (!window.Razorpay) throw new Error('Razorpay not available')
       new window.Razorpay(options).open()
       setStatus('idle')
     } catch {
