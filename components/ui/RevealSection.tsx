@@ -11,7 +11,7 @@ interface RevealSectionProps {
 
 export function RevealSection({ children, className = '', delay = 0 }: RevealSectionProps) {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const inView = useInView(ref, { once: true, margin: '0px' })
 
   return (
     <motion.div

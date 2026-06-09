@@ -6,6 +6,7 @@ import { RevealSection } from '@/components/ui/RevealSection'
 import { ProductCard } from '@/components/collections/ProductCard'
 import { ProductArt } from '@/components/products/ProductArt'
 import { TshirtBlank } from '@/components/products/TshirtBlank'
+import { BuyNowButton } from '@/components/payment/BuyNowButton'
 import { MadhubaniDivider } from '@/components/patterns/MadhubaniDivider'
 
 export function generateStaticParams() {
@@ -107,16 +108,23 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               <TshirtBlank accentHex={accentHex} accentHex2={accentHex2} motif={product.motifKey} />
             </div>
 
-            <div className="flex flex-col gap-4">
+            <BuyNowButton
+              productName={product.name}
+              productSlug={product.slug}
+              price={product.price}
+              sizes={product.sizes}
+            />
+
+            <div className="flex flex-col gap-3 mt-2">
               <Link
                 href="/contact"
-                className="text-xs tracking-[0.25em] uppercase font-display font-medium text-earth-light backdrop-blur-md bg-white/[0.04] border border-earth-warm/30 px-8 py-4 hover:bg-earth-warm/10 hover:border-earth-warm transition-all duration-300 text-center"
+                className="text-xs tracking-[0.25em] uppercase font-display font-medium text-earth-light/40 hover:text-earth-light transition-colors text-center py-2"
               >
                 Enquire About This Piece
               </Link>
               <Link
                 href={`/collections/${collection.slug}`}
-                className="text-xs tracking-[0.25em] uppercase font-display font-medium text-earth-warm/50 hover:text-sky-bright transition-colors text-center"
+                className="text-xs tracking-[0.25em] uppercase font-display font-medium text-earth-warm/30 hover:text-sky-bright transition-colors text-center"
               >
                 ← Back to {collection.name}
               </Link>
