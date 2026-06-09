@@ -3,7 +3,6 @@ import './globals.css'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
 import { Cursor } from '@/components/ui/Cursor'
-import { PageTransition } from '@/components/ui/PageTransition'
 
 export const metadata: Metadata = {
   title: 'ABHAYA — Fearless Indian Streetwear',
@@ -23,9 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="grain-overlay ambient-glow">
         <Cursor />
         <Nav />
-        <PageTransition>
-          {children}
-        </PageTransition>
+        {children}
         <Footer />
       </body>
     </html>
