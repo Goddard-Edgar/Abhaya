@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { MadhubaniCorner } from '@/components/patterns/MadhubaniCorner'
 import { PatternBackground } from '@/components/patterns/PatternBackground'
-import { letterReveal, staggerContainer, fadeUp } from '@/lib/animations'
+import { letterReveal, staggerContainer } from '@/lib/animations'
 
 const letters = 'अभय'.split('')
 
@@ -84,16 +84,6 @@ export function Hero() {
 
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center text-center px-6">
-        {/* Season label */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xs tracking-[0.3em] uppercase text-earth-warm mb-8 font-display"
-        >
-          SS 2025 — Fearlessness
-        </motion.p>
-
         {/* Brand name — letter by letter */}
         <motion.div
           variants={staggerContainer}
@@ -118,28 +108,6 @@ export function Hero() {
             </motion.span>
           ))}
         </motion.div>
-
-        {/* Tagline */}
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: 0.9 }}
-          className="font-serif italic text-earth-warm/80 mb-10 max-w-lg"
-          style={{ fontSize: 'clamp(18px, 2.5vw, 26px)', lineHeight: 1.5 }}
-        >
-          Where <span className="text-sky-bright/90 not-italic">earth meets sky</span>. Where plains meet mountains.<br />
-          Where cloth becomes identity.
-        </motion.p>
-
-        {/* Divider line — gradient earth to sky */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.8, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="w-20 h-px mb-10 origin-center"
-          style={{ background: 'linear-gradient(90deg, var(--brown-warm), var(--blue-bright))' }}
-        />
 
         {/* CTA */}
         <motion.div

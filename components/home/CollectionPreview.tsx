@@ -1,8 +1,6 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { collections } from '@/lib/collections'
 import { RevealSection } from '@/components/ui/RevealSection'
-import { Tilt3DCard } from '@/components/ui/Tilt3DCard'
 
 export function CollectionPreview() {
   const featured = collections.filter((c) => c.featured)
@@ -27,45 +25,44 @@ export function CollectionPreview() {
         </Link>
       </RevealSection>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div>
         {featured.map((collection, i) => (
-          <RevealSection key={collection.slug} delay={i * 0.1}>
-            <Link href={`/collections/${collection.slug}`} className="group block">
-              <Tilt3DCard className="aspect-[3/4] mb-4">
-                <div
-                  className="absolute inset-0 overflow-hidden bg-black-soft ring-1 ring-transparent group-hover:ring-sky-bright/30 transition-all duration-500"
-                  style={{ transform: 'translateZ(0px)', boxShadow: '0 30px 60px -20px rgba(0,0,0,0.6)' }}
-                >
-                  <Image
-                    src={collection.image}
-                    alt={collection.name}
-                    fill
-                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black-deep/80 via-transparent to-transparent" />
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: 'radial-gradient(circle at 70% 20%, rgba(0,180,216,0.18), transparent 60%)' }}
-                  />
-                </div>
-
-                <div className="absolute bottom-6 left-6 right-6" style={{ transform: 'translateZ(64px)' }}>
-                  <p className="text-xs tracking-[0.2em] uppercase text-sky-bright/80 mb-1 font-display">
-                    {collection.category}
-                  </p>
+          <RevealSection key={collection.slug} delay={i * 0.08}>
+            <Link
+              href={`/collections/${collection.slug}`}
+              className="group flex items-center justify-between gap-8 py-8 border-t border-earth-dark/20 hover:border-earth-warm/20 transition-colors duration-300"
+            >
+              <div className="flex items-baseline gap-6 md:gap-10">
+                <span className="text-xs font-display text-earth-warm/25 tracking-[0.2em] shrink-0">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div>
                   <h3
-                    className="font-display font-bold text-xl text-earth-light tracking-tight"
-                    style={{ textShadow: '0 8px 24px rgba(0,0,0,0.5)' }}
+                    className="font-display font-bold text-earth-light group-hover:text-earth-warm transition-colors duration-300"
+                    style={{ fontSize: 'clamp(22px, 3vw, 40px)', letterSpacing: '-0.01em', lineHeight: 1.1 }}
                   >
                     {collection.name}
                   </h3>
+                  <p className="text-sm text-earth-light/30 font-serif italic mt-1.5 hidden sm:block">
+                    {collection.tagline}
+                  </p>
                 </div>
-              </Tilt3DCard>
-              <p className="text-sm text-earth-light/40 font-serif italic">{collection.tagline}</p>
+              </div>
+              <div className="flex items-center gap-6 shrink-0">
+                <span className="hidden md:block text-xs tracking-[0.15em] text-earth-light/20 font-display uppercase">
+                  {collection.items} pieces
+                </span>
+                <span
+                  className="text-earth-warm/30 group-hover:text-earth-warm group-hover:translate-x-1.5 transition-all duration-300"
+                  style={{ fontSize: '1.1rem' }}
+                >
+                  →
+                </span>
+              </div>
             </Link>
           </RevealSection>
         ))}
+        <div className="border-t border-earth-dark/20" />
       </div>
     </section>
   )
